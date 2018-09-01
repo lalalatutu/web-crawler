@@ -6,6 +6,7 @@
   finditer 方法：全部匹配，返回迭代器
   split 方法：分割字符串，返回列表
   sub 方法：替换
+  忽略大小写（re.I）和得到匹配的位置
   2 使用compile 函数后的方法
     [kəmˈpaɪl] 
     1）使用 compile() 函数将正则表达式的字符串形式编译为一个 Pattern 对象
@@ -20,3 +21,8 @@
     finditer 方法：全部匹配，也可以设置从某个位置开始匹配，返回迭代器
     split 方法：分割字符串，返回列表
     sub 方法：替换，替换多少个字符串。
+# xpath 常用，很好用
+ 一.1.Chrome插件 XPath Helper(必须要安装)
+    2.Xpath测试工具的使用(最好安装)
+    . 安装插件 XPath Helper和Xpath测试工具使用
+https://my.oschina.net/u/3892643/blog/1840014
