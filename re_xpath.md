@@ -26,3 +26,86 @@
     2.Xpath测试工具的使用(最好安装)
     . 安装插件 XPath Helper和Xpath测试工具使用
 https://my.oschina.net/u/3892643/blog/1840014
+
+ # 案例--使用代码运行XPath实例测试
+3.1 获取所有的 <li> 标签
+from lxml import etree
+
+html = etree.parse('./hello.html')
+显示etree.parse() 返回类型
+
+print(type(html)  )
+result = html.xpath('//li')
+print(result)  # 打印<li>标签的元素集合
+print(len(result))
+print(type(result))
+print(type(result[0]))
+3.2. 继续获取<li> 标签的所有 class属性
+from lxml import etree
+
+html = etree.parse('./hello.html')
+显示etree.parse() 返回类型
+
+result = html.xpath('//li/@class')
+print(result)  # 打
+3.3. 继续获取<li>标签下hre f为 link1.html 的 <a>标签
+from lxml import etree
+
+html = etree.parse('./hello.html')
+ 显示etree.parse() 返回类型
+result = html.xpath('//li/a[@href="link1.html"]')
+print(result)  # 打印<li>标签的
+运行结果
+
+3.4. 获取<li> 标签下的所有 <span> 标签
+from lxml import etree
+
+html = etree.parse('./hello.html')
+显示etree.parse() 返回类型
+result = html.xpath('//li/span')#注意这么写是不对的：
+因为 / 是用来获取子元素的，而 <span> 并不是 <li> 的子元素，所以，要用双斜杠
+result = html.xpath('//li//span')
+print(result)  # 打印<li
+运行结果
+
+3.5. 获取 <li> 标签下的<a>标签里的所有 class
+
+from lxml import etree
+
+html = etree.parse("./hello.html")
+li_lists = html.xpath("//li/a//@class")
+print(li_lists)
+3.6. 获取最后一个 <li> 的 <a> 的 href
+from lxml import etree
+#需求:获取最后一个 <li> 的 <a> 的 href
+html = etree.parse("./hello.html")
+# 谓语 [last()] 可以找到最后一个元素
+li_lists = html.xpath('//li[last()]/a/@href')
+print(li_lists)
+  
+from lxml import etree
+#需求:获取倒数第二个元素li的内容,也就是fourth item
+html = etree.parse("./hello.html")
+li_lists = html.xpath('//li[last()-1]/a/text()')
+print(li_lists)
+
+第二种方式
+from lxml import etree
+#需求:获取倒数第二个元素li的内容,也就是fourth item
+html = etree.parse("./hello.html")
+#返回a标签对象
+li_lists = html.xpath('//li[last()-1]/a')
+#从a标签对象中取出text
+print(li_lists[0].text)
+
+3.8. 获取 class 值为 bold 的标签名
+from lxml import etree
+#需求:8.获取 class 值为 bold 的标签名
+html = etree.parse("./hello.html")
+li_lists = html.xpath('//*[@class="bold"]')
+print(li_lists)
+print(li_lists[0].tag)
+print(li_lists[0].text)
+
+3.9. 注意//li/@class和//*/@class不一样
+//li/@class意思是所有li标签内的名字叫class的属性
