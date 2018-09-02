@@ -40,6 +40,7 @@ print(result)  # 打印<li>标签的元素集合
 print(len(result))
 print(type(result))
 print(type(result[0]))
+  
 3.2. 继续获取<li> 标签的所有 class属性
 from lxml import etree
 
@@ -75,11 +76,12 @@ from lxml import etree
 html = etree.parse("./hello.html")
 li_lists = html.xpath("//li/a//@class")
 print(li_lists)
+
 3.6. 获取最后一个 <li> 的 <a> 的 href
 from lxml import etree
 #需求:获取最后一个 <li> 的 <a> 的 href
 html = etree.parse("./hello.html")
-# 谓语 [last()] 可以找到最后一个元素
+#谓语 [last()] 可以找到最后一个元素
 li_lists = html.xpath('//li[last()]/a/@href')
 print(li_lists)
   
