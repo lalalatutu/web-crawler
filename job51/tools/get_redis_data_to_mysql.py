@@ -1,4 +1,4 @@
-__author__ = '杨光福IT讲师'
+
 import pymysql
 import redis
 import time
