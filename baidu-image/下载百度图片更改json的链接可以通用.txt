@@ -1,0 +1,12 @@
+百度斗图json链接  -- 直接更改pn就好
+https://image.baidu.com/search/acjson?tn=resultjson_com&ipn=rj&ct=201326592&fp=result&queryWord=%E6%96%97%E5%9B%BE%E8%A1%A8%E6%83%85%E5%8C%85&ie=utf-8&oe=utf-8&word=%E6%96%97%E5%9B%BE%E8%A1%A8%E6%83%85%E5%8C%85&pn=30&rn=30&gsm=1e&1537025889238=
+
+
+美女json链接   -- 直接更改pn就好
+https://image.baidu.com/search/acjson?tn=resultjson_com&ipn=rj&ct=201326592&is=&fp=result&queryWord=%E7%BE%8E%E5%A5%B3&word=%E7%BE%8E%E5%A5%B3&cg=girl&pn=120&rn=30
+
+
+百度图片基本都是动态加载的，所以打开检查（f12），找到Network，选择Preview，然后下拉页面，就可以找到json数据，如图---baidu.png ，然后新窗口打开json数据所对应的链接，可以看到一堆数据，然后百度搜索json在线解析工具，就可以看到标准的json格式数据了，然后就可以根据字典形式取到json数据，因为是字典，所以可能直接item["url"]使用这种会报错，所以使用item.get("url"),娶不到默认给None， 根据链接可以找的多页的规律，一般是&pn= 字段，可以通过for循环，
+for n in range(1,10):
+        pn=(n-1)*30
+
