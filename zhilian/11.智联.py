@@ -1,3 +1,4 @@
+# lalalatutu~
 import json
 
 import requests
@@ -8,9 +9,7 @@ url='https://fe-api.zhaopin.com/c/i/sou?pageSize=60&cityId={}&workExperience=-1&
 print(url)
 response = requests.get(url)
 content = response.text
-# print(content)
-# with open('zhilian.html','w',encoding='utf-8')as f:
-#     f.write(content)
+
 
 def save_to_mongo(data):
     # 创建连接
