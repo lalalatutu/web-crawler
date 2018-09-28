@@ -1,3 +1,4 @@
+# --author：lwt--
 import json
 
 import requests
@@ -15,6 +16,7 @@ def save_to_mongo(data):
     collection.insert_one(data)
 city_name=input('请输入城市名字')
 kw=input('请输入要搜索的工作')
+# 只是爬取了第一页，pn=1，爬取多页可以设置一个变量循环
 url = 'https://www.lagou.com/jobs/positionAjax.json'
 querystring = {
     "city": city_name,
@@ -46,9 +48,6 @@ headers = {
 # }
 response = requests.post( url, data=data, headers=headers, params=querystring)
 content=response.text
-# print(response.text)
-# with open('lagou.html','w',encoding='utf-8')as f:
-#     f.write(content)
 item=json.loads(content,encoding='utf-8')
 print(item)
 for i in item['content']['positionResult']['result']:
