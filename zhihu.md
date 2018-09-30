@@ -1,6 +1,3 @@
-几个学习爬虫好的网站
-https://www.cnblogs.com/zhaof/p/6959012.html一个博客，内容不错
-
 # 爬取知乎
 import json
 import requests
@@ -79,4 +76,4 @@ def zhihu_login(account,password):
     print(res)
 
 
-zhihu_login('13121210484','******')
+zhihu_login('phonenum','******')
