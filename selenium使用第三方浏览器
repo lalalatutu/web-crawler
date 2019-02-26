@@ -1,0 +1,79 @@
+首先python解释器我使用python3.6，其他应该也可以，
+
+接下来安装pip install selenium
+
+安装以后安装360安全浏览器，360浏览器是使用的chrome内核，安装后找到帮助-关于-查看内核版本根据内核版本下载相应的
+
+浏览器驱动(chrome)
+
+注意：一定要根据自已的chrome版本来下载对应的chromedriver
+
+浏览器内核对应chromedriver版本查询地址：https://sites.google.com/a/chromium.org/chromedriver
+
+下载地址：http://npm.taobao.org/mirrors/chromedriver/
+
+将chromedriver.exe的路径加到系统的环境变量中，用户或者系统都可以
+
+准备工作完成！
+
+方法一：
+
+直接使用代码来使用360浏览器
+
+ 
+from selenium.webdriver.chrome.options import Options  
+from selenium import webdriver  
+from selenium.webdriver.common.keys import Keys  
+import time  
+  
+__browser_url = r'C:\Users\Administrator\AppData\Roaming\360se6\Application\360se.exe'  ##360浏览器的地址  
+chrome_options = Options()  
+chrome_options.binary_location = __browser_url  
+  
+driver = webdriver.Chrome(chrome_options=chrome_options)  
+driver.get('http://www.baidu.com')  
+driver.find_element_by_id("kw").send_keys("seleniumhq" + Keys.RETURN)  
+time.sleep(3)  
+driver.quit()  
+ 
+
+方法二：
+
+同样使用代码进行使用，不过好像不如第一种
+
+chrome_options = webdriver.ChromeOptions()
+chrome_options.binary_location = r"C:\Users\kevin\AppData\Roaming\360se6\Application\360se.exe" #这里是360安全浏览器的路径
+chrome_options.add_argument(r'--lang=zh-CN') # 这里添加一些启动的参数
+d = webdriver.Chrome(chrome_options=chrome_options)
+方法三：
+
+对方法一进行封装：
+
+1，在C:\Users\Administrator\AppData\Local\Programs\Python\Python36\Lib\site-packages\selenium\webdriver这是我的，你可以找你自己python解释器下的selenium的路径，在该目录下创建一个新文件夹：chrome360se，其下新建2个文件，__init__.py文件可以为空，webdriver.py文件内容如下：
+
+from selenium.webdriver import Chrome as ChromeWebdriver
+from selenium.webdriver.chrome.options import Options
+import os
+ 
+ 
+class WebDriver(ChromeWebdriver):
+ 
+    def __init__(self, b360bin=None, executable_path="chromedriver", port=0,
+                 chrome_options=None, service_args=None,
+                 desired_capabilities=None, service_log_path=None):
+        if b360bin:
+            self.bin = b360bin
+        else:
+            # 你的360安装路径
+            self.bin=r'C:\Users\Administrator\AppData\Roaming\360se6\Application\360se.exe'
+        chrome_options = Options()
+        chrome_options.binary_location = self.bin
+        ChromeWebdriver.__init__(self, executable_path, port,
+                                 chrome_options, service_args,
+                                 desired_capabilities, service_log_path)
+2，在C:\Users\Administrator\AppData\Local\Programs\Python\Python36\Lib\site-packages\selenium\webdriver中有一个__init__.py文件，打开编辑，插入一句  from .chrome360se.webdriver import WebDriver as Chrome360，这句话意思是从当前目录下的chrome360se文件中导入WebDriver并重命名Chrome360。
+--------------------- 
+作者：啦啦啦涂涂 
+来源：CSDN 
+原文：https://blog.csdn.net/weixin_42358470/article/details/87922284 
+版权声明：本文为博主原创文章，转载请附上博文链接！
